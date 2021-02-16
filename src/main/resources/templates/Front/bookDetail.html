@@ -1,0 +1,350 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	
+	<!-- mobile meta tag -->		
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>XIAXIA book store</title>
+	
+	<!-- main style -->
+	<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+	
+	<!-- color scheme -->
+	<link rel="stylesheet" type="text/css" th:href="@{color-schemes/red/red.css}" media="screen" title="red" />
+	<link rel="stylesheet" type="text/css" th:href="@{color-schemes/yellow/yellow.css}" media="screen" title="yellow" />
+	<link rel="stylesheet" type="text/css" th:href="@{color-schemes/orange/orange.css}" media="screen" title="orange" />
+	<link rel="stylesheet" type="text/css" th:href="@{color-schemes/blue/blue.css}" media="screen" title="blue" />
+	<link rel="stylesheet" type="text/css" th:href="@{color-schemes/green/green.css}" media="screen" title="green" />
+	<link rel="stylesheet" type="text/css" th:href="@{color-schemes/purple/purple.css}" media="screen" title="purple" />
+	
+	<!--miscellaneous-->
+	<link rel="stylesheet" type="text/css" th:href="@{css/superfish.css}" media="screen">
+	<link rel="stylesheet" type="text/css" th:href="@{css/prettyPhoto.css}" media="screen"/>
+	<link rel="stylesheet" type="text/css" th:href="@{css/font-awesome.css}" media="screen"/>
+	<link rel="stylesheet" type="text/css" th:href="@{css/audioplayer.css}" media="screen" />
+	
+	<!-- revolution slider settings -->
+	<link rel="stylesheet" type="text/css" th:href="@{rs-plugin/css/settings.css}" media="screen" />
+
+	<!-- setting mobile environment -->		
+	<link rel="stylesheet" type="text/css" th:href="@{css/responsive.css}" media="screen" />
+	
+	<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" th:href="@{css/font-awesome-ie7.min.css}">
+	<![endif]-->
+	
+	<!--[if lt IE 9]>
+	<script src="../../../html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="js/hoverIntent.js"></script>
+	<script type="text/javascript" src="js/superfish.js"></script>
+	<script type="text/javascript" src="js/jquery.jcarousel.js"></script>
+	<script type="text/javascript" src="js/jquery.tweet.js"></script>
+	<script type="text/javascript" src="js/jflickrfeed.js"></script>
+	<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+	<script type="text/javascript" src="js/slides.min.jquery.js"></script>
+	<script type="text/javascript" src="js/jquery.mobilemenu.js"></script>
+	<script type="text/javascript" src="js/jquery.contact.js"></script>
+	<script type="text/javascript" src="js/jquery.preloadify.min.js"></script>
+	<script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
+	<script type="text/javascript" src="js/jquery.isotope.min.js"></script>
+	
+	<!-- jQuery Revolution Slider -->
+	<script type="text/javascript" src="rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+	<script type="text/javascript" src="rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+	
+	<script type="text/javascript" src="js/custom.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="template-changer.css" media="screen"/>		
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>	
+	<script type="text/javascript" src="js/styleswitch.js"></script>	
+	
+	<!-- Google Web Fonts -->
+	<link href='../../../fonts.googleapis.com/css@family=Open+Sans_3A300,400,600,700' rel='stylesheet' type='text/css'>
+    <!-- 引入 Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <script type="text/javascript">
+	$(function()
+		{
+			// Call stylesheet init so that all stylesheet changing functions 
+			// will work.
+			$.stylesheetInit();
+			
+			// This code loops through the stylesheets when you click the link with 
+			// an ID of "toggler" below.
+			$('#toggler').bind(
+				'click',
+				function(e)
+				{
+					$.stylesheetToggle();
+					return false;
+				}
+			);
+			
+			// When one of the styleswitch links is clicked then switch the stylesheet to
+			// the one matching the value of that links rel attribute.
+			$('.styleswitch').bind(
+				'click',
+				function(e)
+				{
+					$.stylesheetSwitch(this.getAttribute('rel'));
+					return false;
+				}
+			);
+		}
+	);
+</script>	
+	
+</head>
+<body th:if="${book!=null}">
+ 
+
+<!-- setting a fullscreen image as background:
+<img id="bg" src="images/apple.jpg" alt="apple-background" />
+-->
+
+
+	<div class="theme-changer-wrap">
+		<div class="theme-changer">
+			<div class="changer-inner">				
+				<span> COLOR SCHEME </span>
+					<ul id="colors">
+						<li><a href="blog-single.html@style=yellow" rel="yellow" class="styleswitch color-yellow">yellow</a></li>
+						<li><a href="blog-single.html@style=orange" rel="orange" class="styleswitch color-orange">orange</a></li>
+						<li><a href="blog-single.html@style=blue" rel="blue" class="styleswitch color-blue">blue</a></li>
+						<li><a href="blog-single.html@style=green" rel="green" class="styleswitch color-green">blue</a></li>
+						<li><a href="blog-single.html@style=red" rel="red" class="styleswitch color-red">blue</a></li>
+						<li><a href="blog-single.html@style=purple" rel="purple" class="styleswitch color-purple">blue</a></li>
+					
+					</ul>
+					<div style="clear:both; height:10px; width:100%"></div>				
+			</div>
+		</div>
+		<div class="open-close"></div>
+	</div> 	
+<div id="wrapper">
+	<header id="header">
+		<div class="centered-wrapper">
+			<div class="one-third">
+				<div class="logo">
+					<hr><hr>
+					<h2>XIAXIA book store</h2>
+					<hr><hr>
+				</div>
+			</div><!--end one-third-->
+			
+			<div class="two-third column-last">		
+				<nav id="navigation">
+					<ul id="mainnav">
+						<li><a th:href="@{/index}" class="active"><span>首页</span></a></li>
+						<li><a href="#" class="current"><span>图书</span></a></li>
+						<li><a href="#"><span>电子书</span></a></li>
+						<li><a th:href="@{/showShoppingCart}"><span>购物车</span></a></li>
+						<li><a href="portfolio-four-columns.html"><span>我的订单</span></a></li>
+						<li><a href="blog-masonry-2-columns.html"><span>BLOG</span></a></li>
+					</ul>
+				</nav><!--end navigation-->
+			</div><!--end two-third-->
+		<div class="clear"></div>			
+		</div><!--end centered-wrapper-->
+	</header>	
+			
+	<div class="top-shadow"></div>
+	
+	<section class="page-title">
+	<div class="page-background">
+		<div class="pattern1"></div>
+	</div>
+	<div class="bottom-shadow"></div>
+		<div class="title-wrapper">
+			<div class="title-bg">
+				<div class="title-content">
+					<div class="two-third">
+						<h2 th:utext="${book.bookName}"></h2>
+					</div>
+					<div class="one-third column-last">		
+					</div>
+					<div class="clear"></div>
+				</div><!--end title-content-->
+			</div>
+		</div><!--end title-wrapper-->
+	</section>	
+
+
+	<div class="centered-wrapper" >
+		<section id="blog">
+			<div id="posts" class="single-post">
+				<article class="post">
+					<div  style="text-align: center;">
+						<img th:src="@{${book.bookImages[0].pAddress}}" alt="" style="display: inline-block;width: 45%;height: 50%;"/>
+					</div><!--end post-thumbnail-->
+					<div class="post-content">
+						<span class="masonry-post-meta">
+							月销售：<div th:utext="${book.sales}"></div>
+						</span>
+						<i class="icon-pencil"></i>
+						<div class="clear"></div>
+						<p>作者:樊登出版社:北京联合出版有限公司出版时间:2021年01月
+                            在当当文化新书榜排名1位
+                            52条评论</p>
+						<p></p>
+						
+						<blockquote>樊登2021年全新重磅作品！四千万会员信赖的樊登博士，用《论语》教你为人处世。逐句拆解，生动演绎，让每个人都能轻松读透《论语》；让你掌握《论语》中的经验和方法，解决人生中遇到的一切难题。</blockquote>
+						<h6>实书展示</h6>
+						<ul class="inner-blog-gallery">
+							<li>
+								<a href="images/blog/gthumbnail1.jpg" rel="prettyPhoto[pp_gal]">
+									<span class="item-on-hover"><span class="hover-image"></span></span>
+									<img src="images/blog/gthumbnail1.jpg" alt="" />
+								</a>
+							</li>
+							<li>
+								<a href="images/blog/gthumbnail2.jpg" rel="prettyPhoto[pp_gal]">
+									<span class="item-on-hover"><span class="hover-image"></span></span>
+									<img src="images/blog/gthumbnail2.jpg" alt="" />
+								</a>
+							</li>
+							<li>
+								<a href="images/blog/gthumbnail3.jpg" rel="prettyPhoto[pp_gal]">
+									<span class="item-on-hover"><span class="hover-image"></span></span>
+									<img src="images/blog/gthumbnail3.jpg" alt="" />
+								</a>
+							</li>
+							<li class="column-last">
+								<a href="images/blog/gthumbnail4.jpg" rel="prettyPhoto[pp_gal]">
+									<span class="item-on-hover"><span class="hover-image"></span></span>
+									<img src="images/blog/gthumbnail4.jpg" alt="" />
+								</a>
+							</li>
+						</ul>
+						<h6>内容简介</h6>
+						<p th:utext="${book.introduction}"></p>
+						<div class="author-bio">							
+							<img th:src="@{${book.author.imageAddresses[0].pAddress}}" alt="author-gravatar" />
+							<div class="authorp">
+								<h2>作者： <a href="#" th:utext="${book.author.authorName}"></a></h2>
+								<p th:utext="${book.author.introduction}"></p>
+							</div>
+						</div>	
+
+						<div class="double-separator"></div>
+					
+						<h3>评论</h3>
+					
+						<ol class="commentlist" th:if="${book.evaluations!=null}">
+							<li class="comment" th:each="evaluation:${book.evaluations}">
+								<div class="commentwrap">
+									<div class="avatar">
+										<img th:src="@{${evaluation.user.avatar}}" width="60" height="60" alt="" />
+									</div><!--end avatar-->
+
+									<div class="metacomment">
+										<span th:utext="${evaluation.eTime}"></span>
+									</div><!--end metacomment-->
+
+									<div class="bodycomment">
+										<p th:utext="${evaluation.eContent}"></p>
+									</div><!--end bodycomment-->
+								</div><!--end comment-wrap-->
+							</li>
+						</ol>
+					
+
+						<form action="" id="commentform" method="post" th:action="@{/addEvaluation}">
+							<fieldset>
+								<label>快来写下你的评论吧 <span>*</span></label>
+								<textarea name="comment" id="mycomment" rows="20" cols="30"></textarea>
+							</fieldset>
+							<input name="bookId" th:value="${book.bookId}" hidden="hidden"/>
+							<fieldset>
+								<input name="mysubmitted" id="mysubmitted" class="button small red" value="Submit Comment" type="submit"/>
+							</fieldset>
+						</form>		
+					</div><!--end post-content-->
+				</article>
+
+			</div><!--end posts-->
+		</section>
+		
+		<aside id="sidebar">
+			<div class="widget recent-posts">
+                <h1><font color="red" th:utext="'￥'+${book.price}"> </font></h1>
+				<div class="sidebar-post">
+					<h5><a href="bookDetail.html">关联商品</a></h5>
+					<span><a href="#">论语1/</a><a href="#">论语2/</a><a href="#">论语3/</a></span>
+				</div><!--end sidebar-post-->
+				<div class="sidebar-post">
+                    <form class="form-inline" role="form" action="/shopping" method="post">
+                <button type="button" onclick="changeNum(this,1)">+</button><input type="text" class="col-lg-2" onblur="checknum(this)" name="bookNumber" /><button type="button"onclick="changeNum(this,-1)">-</button>
+<input type="text" name="bookId" hidden="hidden" th:value="${book.bookId}"/>
+                        <br><br><br>
+                    <script type="text/javascript">
+                        function checknum(obj){
+                            if(obj.value >10){
+                                obj.value = 10;
+                                alert('Max 10!');
+                            }
+                        }
+                        function changeNum(obj,num)
+                        {
+                            var input = getParent(obj).getElementsByTagName("input");
+                            for(var i=0;i<input.length;i++)
+                            {
+                                if(input[i].type=="text")
+                                {
+                                    if(input[i].value == "")
+                                        input[i].value = num;
+                                    else
+                                        input[i].value = input[i].value - 0 + num;
+                                }
+                                if(input[i].value == "-1")
+                                    input[i].value = 0;
+                                if(input[i].value == "11")
+                                    input[i].value = 10;
+                            }
+                        }
+                        //获取父级对像
+                        function getParent(obj)
+                        {
+                            if(typeof(obj) != "object"){obj = document.getElementById(obj);}
+                            if(obj)
+                                return obj.parentElement || obj.parentNode;
+                        }
+                    </script>
+
+                    <button type="submit" class="btn btn-danger">加入购物车</button>
+                    <button type="submit" class="btn btn-danger">立即购买</button>
+                    </form>
+				</div><!--end sidebar-post-->
+
+
+			<div class="widget tags ">
+				<h3>标签</h3>
+				<ul>
+					<li><a href="#">文学</a></li>
+					<li><a href="#">科技</a></li>
+					<li><a href="#">艺术</a></li>
+					<li><a href="#">摄影</a></li>
+					<li><a href="#">唯美</a></li>
+				</ul>
+			</div><!--end widget-->
+		</aside>
+
+		<div class="clear"></div>
+	</div><!--end centered-wrapper-->
+	
+	<div class="space"></div>
+	
+	<footer id="footer">
+
+
+	</footer><!--end footer-->	
+	
+</div><!--end wrapper-->
+</body> 
+</html>

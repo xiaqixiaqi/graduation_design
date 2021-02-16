@@ -1,0 +1,369 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	
+	<!-- mobile meta tag -->		
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>XIAXIA book store</title>
+	
+	<!-- main style -->
+	<link rel="stylesheet" type="text/css" th:href="@{style.css}" media="screen" />
+	
+	<!-- color scheme -->
+	<link rel="stylesheet" type="text/css" th:href="@{color-schemes/red/red.css}" media="screen" title="red" />
+	<link rel="stylesheet" type="text/css" th:href="@{color-schemes/yellow/yellow.css}" media="screen" title="yellow" />
+	<link rel="stylesheet" type="text/css" th:href="@{color-schemes/orange/orange.css}" media="screen" title="orange" />
+	<link rel="stylesheet" type="text/css" th:href="@{color-schemes/blue/blue.css}" media="screen" title="blue" />
+	<link rel="stylesheet" type="text/css" th:href="@{color-schemes/green/green.css}" media="screen" title="green" />
+	<link rel="stylesheet" type="text/css" th:href="@{color-schemes/purple/purple.css}" media="screen" title="purple" />
+	
+	<!--miscellaneous-->
+	<link rel="stylesheet" type="text/css" th:href="@{css/superfish.css}" media="screen">
+	<link rel="stylesheet" type="text/css" th:href="@{css/prettyPhoto.css}" media="screen"/>
+	<link rel="stylesheet" type="text/css" th:href="@{css/font-awesome.css}" media="screen"/>
+	<link rel="stylesheet" type="text/css" th:href="@{css/audioplayer.css}" media="screen" />
+	
+	<!-- revolution slider settings -->
+	<link rel="stylesheet" type="text/css" th:href="@{rs-plugin/css/settings.css}" media="screen" />
+
+	<!-- setting mobile environment -->		
+	<link rel="stylesheet" type="text/css" th:href="@{css/responsive.css}" media="screen" />
+	
+	<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" th:href="@{css/font-awesome-ie7.min.css}">
+	<![endif]-->
+	
+	<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="js/hoverIntent.js"></script>
+	<script type="text/javascript" src="js/superfish.js"></script>
+	<script type="text/javascript" src="js/jquery.jcarousel.js"></script>
+	<script type="text/javascript" src="js/jquery.tweet.js"></script>
+	<script type="text/javascript" src="js/jflickrfeed.js"></script>
+	<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+	<script type="text/javascript" src="js/slides.min.jquery.js"></script>
+	<script type="text/javascript" src="js/jquery.mobilemenu.js"></script>
+	<script type="text/javascript" src="js/jquery.contact.js"></script>
+	<script type="text/javascript" src="js/jquery.preloadify.min.js"></script>
+	<script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
+	<script type="text/javascript" src="js/jquery.isotope.min.js"></script>
+	
+	<!-- jQuery Revolution Slider -->
+	<script type="text/javascript" src="rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+	<script type="text/javascript" src="rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+	
+	<script type="text/javascript" src="js/custom.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="template-changer.css" media="screen"/>		
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>	
+	<script type="text/javascript" src="js/styleswitch.js"></script>	
+	
+	<!-- Google Web Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+<!--bootstrap-->
+	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.min.css"/>
+	<script src="bootstrap-4.4.1-dist/js/bootstrap.min.js"/>
+	<!--<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
+	<!--<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>-->
+	<!--<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+<script type="text/javascript">
+	$(function()
+		{
+			// Call stylesheet init so that all stylesheet changing functions
+			// will work.
+			$.stylesheetInit();
+
+			// This code loops through the stylesheets when you click the link with
+			// an ID of "toggler" below.
+			$('#toggler').bind(
+				'click',
+				function(e)
+				{
+					$.stylesheetToggle();
+					return false;
+				}
+			);
+
+			// When one of the styleswitch links is clicked then switch the stylesheet to
+			// the one matching the value of that links rel attribute.
+			$('.styleswitch').bind(
+				'click',
+				function(e)
+				{
+					$.stylesheetSwitch(this.getAttribute('rel'));
+					return false;
+				}
+			);
+		}
+	);
+
+
+	// var t = $("#text_box");
+	// $("#add").click(function(){
+	// 	t.val(parseInt(t.val())+1);
+	// 	$('#min').removeAttr("disabled");
+	// });
+	// $("#min").click(function(){
+	// 	if(t.val()==1){
+	// 		$('#min').attr("disabled", true);
+	// 		return ;
+	// 	}
+	// 	t.val(parseInt(t.val())-1);
+	// });
+
+
+</script>	
+
+</head>
+<body>
+ 
+
+<!-- setting a fullscreen image as background:
+<img id="bg" src="images/apple.jpg" alt="apple-background" />
+-->
+
+
+	<div class="theme-changer-wrap">
+		<div class="theme-changer">
+			<div class="changer-inner">				
+				<span> COLOR SCHEME </span>
+					<ul id="colors">
+						<li><a href="?style=yellow" rel="yellow" class="styleswitch color-yellow">yellow</a></li>
+						<li><a href="?style=orange" rel="orange" class="styleswitch color-orange">orange</a></li>
+						<li><a href="?style=blue" rel="blue" class="styleswitch color-blue">blue</a></li>
+						<li><a href="?style=green" rel="green" class="styleswitch color-green">blue</a></li>
+						<li><a href="?style=red" rel="red" class="styleswitch color-red">blue</a></li>
+						<li><a href="?style=purple" rel="purple" class="styleswitch color-purple">blue</a></li>
+					
+					</ul>
+					<div style="clear:both; height:10px; width:100%"></div>				
+			</div>
+		</div>
+		<div class="open-close"></div>
+	</div> 	
+<div id="wrapper">
+	<header id="header">
+		<div class="centered-wrapper">
+			<div class="one-third">
+				<div class="logo">
+					<h2>XIAXIA book store</h2>
+				</div>
+			</div><!--end one-third-->
+			<div class="two-third column-last">		
+				<nav id="navigation">
+					<ul id="mainnav">
+						<li><a th:href="@{/index}"><span>首页</span></a></li>
+						<li><a href="#"><span>图书</span></a></li>
+						<li><a href="#"><span>电子书</span></a></li>
+						<li><a th:href="@{/showShoppingCart}"  class="current"><span>购物车</span></a></li>
+						<li><a href="portfolio-four-columns.html"><span>我的订单</span></a></li>
+						<li><a href="blog-masonry-2-columns.html"><span>BLOG</span></a></li>
+					</ul>
+				</nav><!--end navigation-->
+			</div><!--end two-third-->
+		<div class="clear"></div>			
+		</div><!--end centered-wrapper-->
+	</header>	
+
+	<hr/>
+	<div class="centered-wrapper">	
+		<div class="one-fourth col-md-2">
+				<a href="#" class="list-group-item active">
+					购物车
+				</a>
+
+				<a href="#" class="list-group-item">订单</a>
+				<a href="#" class="list-group-item">评价</a>
+				<a href="#" class="list-group-item">浏览记录</a>
+				<a href="#" class="list-group-item">个人信息</a>
+				<a href="#" class="list-group-item">建议</a>
+
+
+		</div><!--end one-fourth-->
+		
+		<div class="three-fourth column-last">
+
+			<table class="table" th:if="${shoppingCart!=null}">
+				<thead>
+				<tr>
+					<th style="width: 4%"><input type="checkbox" name="name" value="全选" id="allSelect"/></th>
+					<th></th>
+					<th>商品信息</th>
+					<th>单价</th>
+					<th>数量</th>
+					<th>金额</th>
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:each="shoppingCartItem:${shoppingCart.shoppingCartItems}">
+					<td style="width: 4%"><input type="checkbox" name="quanxuan" value="" class="box" /></td>
+					<td style="width: 10%"><img th:src="@{${shoppingCartItem.book.bookImages[0].pAddress}}" style="width: 100%"/></td>
+					<td th:utext="${shoppingCartItem.book.bookName}"></td>
+					<td th:utext="${shoppingCartItem.book.price}" class="price"></td>
+					<td>
+
+
+						<input class="min" name="" type="button" value="-" />
+						<input class="text_box" th:name="${shoppingCartItem.book.bookName}" type="text" th:value="${shoppingCartItem.bookNumber}"/>
+						<input class="add" name="" type="button" value="+" />
+					</td>
+
+					<td  class="xiaoji" th:utext="${shoppingCartItem.book.price*shoppingCartItem.bookNumber}"></td>
+					<td ><input type="button" name="name" value="删除" class="deleteOne" /></td>
+				</tr>
+				</tbody>
+
+			</table>
+
+						已选商品 <span class="cartSumNumber" id="cartSumNumber">0</span> 件
+						 合计 : <span class="cartSumPrice" id="Sum"> ￥0.00</span>
+						<button class="createOrderButton">結算</button>
+
+
+
+			<script>
+				//减一
+				$(".min").click(function () {
+					var num=$(this).siblings(".text_box").val();
+					num--;
+					$(this).siblings(".text_box").val(num);
+					if (num<=0){
+						$(this).prop("disabled",true);
+					}
+					var price=$(this).parent().siblings(".price").text();
+					$(this).parent().siblings(".xiaoji").text(num*price);
+					totalPrice();
+					totalNum();
+				});
+				//加一
+				$(".add").click(function () {
+					var num=$(this).siblings(".text_box").val();
+					num++;
+					$(this).siblings(".text_box").val(num);
+					if (num>0){
+						$(this).siblings(".min").prop("disabled",false);
+					}
+					var price=$(this).parent().siblings(".price").text();
+					$(this).parent().siblings(".xiaoji").text(num*price);
+					totalPrice();
+					totalNum();
+				});
+				//全选
+				$("#allSelect").click(function () {
+					if ($('#allSelect').is(':checked')) {
+						$(".box").prop("checked", true);
+						// do something
+						totalPrice();
+						totalNum();
+					}
+					if (!$('#allSelect').is(':checked')) {
+						$(".box").prop("checked", false);
+						// do something
+						totalPrice();
+						totalNum();
+					}
+				})
+
+				//单行删除商品
+				$(".deleteOne").click(function () {
+					$(this).parent().parent().remove();
+				})
+				//计算总价方法
+				function totalPrice() {
+					//计算总价，编写总价方法
+					var zong = 0;
+					$(".xiaoji").each(function () {
+						if ($(this).siblings().children(".box").is(':checked')) {
+							var all=parseFloat($(this).text());
+							zong += all;
+						}
+					});
+					$("#Sum").text(zong);
+				}
+				//计算总数
+				function totalNum(){
+					var total=0;
+					$(".text_box").each(function () {
+						if ($(this).parent().siblings().children(".box").is(':checked')) {
+							var all=parseInt($(this).val());
+							total += all;
+						}
+					});
+					$("#cartSumNumber").text(total);
+				}
+				//选择商品时，计算总价
+				$(".box").click(function () {
+					totalPrice();
+					totalNum();
+				})
+			</script>
+		</div><!--three-fourth-->				
+		
+		<div class="clear"></div>
+	</div><!--end centered-wrapper-->
+	
+	<div class="space"></div>
+	
+	<footer id="footer">
+		<div class="centered-wrapper">
+			<div id="topfooter">
+				<div class="one-half">
+					<h3>About Us</h3>
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam veritatis et quasi nam liber tempore.</p>
+					<div class="footer-logo"></div>
+				</div><!--end percent-one-half-->
+				<div class="one-half column-last">
+					<div class="percent-one-half">
+						<h3>We are on Twitter</h3>
+						<div class="tweet1"></div>
+					</div>
+					
+					<div class="percent-one-half column-last">
+						<h3>Get in Touch with Us</h3>
+						<ul>
+							<li>Address: 1600 Amphitheatre Parkway, Mountain View, CA 94043</li>
+							<li>Phone: +321 123 456 7<br/>
+							E-mail: <a href="mailto:">johndoe@ipsum.com</a></li>
+						</ul>
+					</div><!--end one-half-->					
+				</div><!--end one-half-->
+			</div><!--end topfooter-->
+		</div><!--end centered-wrapper-->
+		
+		<div id="bottomfooter">		
+			<div class="centered-wrapper">		
+				<div class="one-half">
+
+				</div><!--end one-half-->
+
+				<div class="one-half column-last">
+					<ul id="social">
+						<li><a class="rss" href="#">RSS Feed</a></li>
+						<li><a class="facebook" href="#">Facebook</a></li>
+						<li><a class="twitter" href="#">Twitter</a></li>
+						<li><a class="flickr" href="#">Flickr</a></li>
+						<li><a class="google" href="#">Google</a></li>
+						
+					<!-- You can add social icons for forrst, dribbble, vimeo, linkedin and skype. Take the ones you need from the list and paste them above
+					
+						<li><a class="forrst" href="#">Forrst</a></li>
+						<li><a class="dribbble" href="#">Dribbble</a></li>
+						<li><a class="vimeo" href="#">Vimeo</a></li>
+						<li><a class="linkedin" href="#">LinkedIn</a></li>
+						<li><a class="skype" href="#">Skype</a></li> 
+					-->	
+					</ul>					
+				</div><!--end one-half-->
+			</div><!--end centered-wrapper-->				
+		</div><!--end bottomfooter-->
+	</footer><!--end footer-->	
+	
+</div><!--end wrapper-->
+</body> 
+</html>
