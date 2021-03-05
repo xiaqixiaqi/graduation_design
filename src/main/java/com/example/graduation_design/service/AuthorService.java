@@ -4,11 +4,14 @@ import com.example.graduation_design.bean.Author;
 import com.example.graduation_design.bean.ImageAddress;
 import com.example.graduation_design.repository.AuthorRepository;
 import com.example.graduation_design.repository.ImageAddressRepository;
+import com.sun.corba.se.spi.ior.ObjectKey;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -73,6 +76,24 @@ public class AuthorService {
 
     public List<Author> findAllAuthor(){
         return (List<Author>) authorRepository.findAll();
+    }
+    public boolean test(){
+        if (authorRepository.vvv()!=null){
+            for (Object key : authorRepository.vvv()) {
+                Object[] objects= (Object[]) key;
+                System.out.println(objects[0]+","+objects[1]);
+            }
+        }
+        else{
+            System.out.println("为空");
+        }
+
+
+
+        return true;
+    }
+    public Author findAuthorByAuthorId(int authorId){
+        return authorRepository.findById(authorId).get();
     }
 
 }

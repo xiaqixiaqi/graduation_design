@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.graduation_design.bean.Business;
 import com.example.graduation_design.bean.User;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,13 +21,25 @@ public class AdminInterceptor implements  HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 //        System.out.println("执行了TestInterceptor的preHandle方法");
+        System.out.println("已经进入登录拦截器");
+        String url = request.getRequestURI();
+        System.out.println("url------:" + url);
         try {
             //统一拦截（查询当前session是否存在user）(这里user会在每次登陆成功后，写入session)
             User user=(User)request.getSession().getAttribute("USER");
-            if(user!=null){
-                return true;
+            Business business=(Business)request.getSession().getAttribute("BUSINESS");
+            System.out.println("进入拦截器"+request.getRequestURI());
+            if (user==null&&request.getRequestURI().contains("user")){
+                System.out.println("进入user...");
+                response.sendRedirect(request.getContextPath()+"/login");
+                return false;
             }
-            response.sendRedirect(request.getContextPath()+"/login");
+            if (((user==null||business==null)&&request.getRequestURI().contains("business"))||(user!=null&&user.getRole()>3)){
+               System.out.println("进入back...");
+               response.sendRedirect(request.getContextPath()+"/backLogin");
+               return false;
+           }
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
         }

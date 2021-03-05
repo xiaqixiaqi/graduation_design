@@ -2,6 +2,7 @@ package com.example.graduation_design.bean;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,15 +18,20 @@ public class User {
     private int sex;       //性别,1：男 0：女
     private String createTime;      //注册时间
     //private int userTypeId;     //用户类型id
-    private String address;     //收货地址
+    private String address;     //家庭地址
+
     private String userLove;       //用户喜爱
-    private int role;   //用户权限，1：老板 2：管理员 3:客户
+    private int role;   //用户权限，1：老板 2：管理员 3:商家 4:客户/卖家 5:无效管理员   等级越低，权限越大
+//    @ManyToMany(cascade = {CascadeType.PERSIST},fetch = FetchType.EAGER)
+//    @JoinTable(name = "tb_user_role",joinColumns = {@JoinColumn(name = "user_id")},
+//    inverseJoinColumns = {@JoinColumn(name = "role_id")})
+//    private List<Role> roles;
     private String avatar; //一个用户有一个头像
     private String phone;    //联系方式
     private String age; //出生年月日
     //每个用户可能有多条评论
     @OneToMany(fetch = FetchType.LAZY,targetEntity = Evaluation.class,mappedBy ="user" )
-    private Set<Evaluation> evaluations=new HashSet<>();
+    private List<Evaluation> evaluations;
     //一个用户有一个购物车
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cartId",referencedColumnName = "cartId")
@@ -40,6 +46,12 @@ public class User {
     //一个用户可以上传个录播图
     @OneToMany(fetch = FetchType.LAZY,targetEntity = Slide.class,mappedBy = "publisher")
     private Set<Slide> slides;
+    //一个用户有多个收货地址
+    @OneToMany(fetch = FetchType.LAZY,targetEntity = ReceiptsAddress.class,mappedBy = "user",cascade = CascadeType.PERSIST)
+    private List<ReceiptsAddress> receiptsAddresses;
+    @OneToOne
+    @JoinColumn(name = "bId")
+    private Business business;
 
 
 
@@ -103,11 +115,11 @@ public class User {
         this.userLove = userLove;
     }
 
-    public Set<Evaluation> getEvaluations() {
+    public List<Evaluation> getEvaluations() {
         return evaluations;
     }
 
-    public void setEvaluations(Set<Evaluation> evaluations) {
+    public void setEvaluations(List<Evaluation> evaluations) {
         this.evaluations = evaluations;
     }
 
@@ -158,14 +170,14 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-    public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
-    }
+//
+//    public int getRole() {
+//        return role;
+//    }
+//
+//    public void setRole(int role) {
+//        this.role = role;
+//    }
 
     public String getRealname() {
         return realname;
@@ -190,4 +202,38 @@ public class User {
     public void setSex(int sex) {
         this.sex = sex;
     }
+
+    public List<ReceiptsAddress> getReceiptsAddresses() {
+        return receiptsAddresses;
+    }
+
+    public void setReceiptsAddresses(List<ReceiptsAddress> receiptsAddresses) {
+        this.receiptsAddresses = receiptsAddresses;
+    }
+
+    public Business getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(Business business) {
+        this.business = business;
+    }
+
+//    public List<Role> getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(List<Role> roles) {
+//        this.roles = roles;
+//    }
+
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
 }

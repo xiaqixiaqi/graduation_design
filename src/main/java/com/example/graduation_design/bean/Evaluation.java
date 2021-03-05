@@ -13,6 +13,7 @@ public class Evaluation {
     //private int bookId;             //所属书的id
     //private int userId;             //用户id
     private String eTime;           //时间
+    private int praise;//1为好评，0为差评
     //一个评论只能是一个用户，一个用户可以有多条评论
     @ManyToOne(fetch = FetchType.LAZY,targetEntity = User.class)
     @JoinColumn(name = "userId",referencedColumnName = "userId")
@@ -21,6 +22,10 @@ public class Evaluation {
     @ManyToOne(fetch = FetchType.LAZY,targetEntity = Book.class)
     @JoinColumn(name = "bookId",referencedColumnName = "bookId")
     private Book book;
+    //一个评论只能是一个销售订单的，一个销售订单为一个一个评论
+    @OneToOne
+    @JoinColumn(name = "orderItemId")
+    private OrderItem orderItem;
 
 
     public Evaluation() {
@@ -60,5 +65,21 @@ public class Evaluation {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public OrderItem getOrderItem() {
+        return orderItem;
+    }
+
+    public void setOrderItem(OrderItem orderItem) {
+        this.orderItem = orderItem;
+    }
+
+    public int getPraise() {
+        return praise;
+    }
+
+    public void setPraise(int praise) {
+        this.praise = praise;
     }
 }

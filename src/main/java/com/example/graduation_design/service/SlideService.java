@@ -29,4 +29,7 @@ public class SlideService {
             }
         return 0;
         }
+    public List<Slide> findAllSlide(){
+        return (List<Slide>) slideRepository.findAll();
+    }
 }

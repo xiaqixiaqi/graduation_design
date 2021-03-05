@@ -15,6 +15,7 @@ public class ShoppingCartItem {
     private Book book;
     private String sCartTime;
     private int bookNumber;
+    private int isValidation;//是否有效的处理 1:有效 0：无效
     //一个购物车有多个购物车条目
     @ManyToOne(fetch = FetchType.LAZY,targetEntity = ShoppingCart.class)
     @JoinColumn(name = "cartId",referencedColumnName ="cartId" )
@@ -57,5 +58,13 @@ public class ShoppingCartItem {
 
     public void setShoppingCart(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
+    }
+
+    public int getIsValidation() {
+        return isValidation;
+    }
+
+    public void setIsValidation(int isValidation) {
+        this.isValidation = isValidation;
     }
 }

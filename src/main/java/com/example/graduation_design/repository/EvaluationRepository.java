@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface EvaluationRepository extends CrudRepository<Evaluation,Integer> {
     List<Evaluation> findAllByBookBookId(int bookId);
+    List<Evaluation> findAllByUser(User user);
 }

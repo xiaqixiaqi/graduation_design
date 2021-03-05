@@ -1,7 +1,9 @@
 package com.example.graduation_design.bean;
 
 import javax.persistence.*;
+import javax.swing.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,10 +22,10 @@ public class Book {
     private String introduction;        //对书的描述
     private float price;            //单价
     private int inventory;          //库存
-    //评价
     private int poorReviews;        //差评度
     private int praise;             //好评度
     private int sales;              //销售量
+    private String addDate;         //添加时间
     private int isValuable;         //记录该书是否还有效，即是否还存在,1表示有效，0表示无效
     @ManyToOne(fetch = FetchType.LAZY,targetEntity = Author.class)
     @JoinColumn(name = "authorId",referencedColumnName = "authorId")
@@ -36,13 +38,17 @@ public class Book {
     private Set<Label> labels=new HashSet<>();
     //一本书有多个评论
     @OneToMany(fetch = FetchType.LAZY,targetEntity = Evaluation.class,mappedBy = "book")
-    private Set<Evaluation> evaluations=new HashSet<>();
+    private List<Evaluation> evaluations;
 
     //一本书有多张照片
     @OneToMany(fetch = FetchType.LAZY,targetEntity = ImageAddress.class,mappedBy = "book",cascade = CascadeType.PERSIST)
     private Set<ImageAddress> bookImages =new HashSet<>();
     public Book() {
     }
+    //一本书为一个店铺所有
+    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Business.class)
+    @JoinColumn(name = "bId",referencedColumnName = "bId")
+    private Business business;
 
     public Book(String bookName, String introduction, float price, int inventory) {
         this.bookName = bookName;
@@ -135,11 +141,11 @@ public class Book {
         this.labels = labels;
     }
 
-    public Set<Evaluation> getEvaluations() {
+    public List<Evaluation> getEvaluations() {
         return evaluations;
     }
 
-    public void setEvaluations(Set<Evaluation> evaluations) {
+    public void setEvaluations(List<Evaluation> evaluations) {
         this.evaluations = evaluations;
     }
 
@@ -157,5 +163,21 @@ public class Book {
 
     public void setIsValuable(int isValuable) {
         this.isValuable = isValuable;
+    }
+
+    public Business getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(Business business) {
+        this.business = business;
+    }
+
+    public String getAddDate() {
+        return addDate;
+    }
+
+    public void setAddDate(String addDate) {
+        this.addDate = addDate;
     }
 }

@@ -2,6 +2,7 @@ package com.example.graduation_design.bean;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,7 +15,7 @@ public class ShoppingCart {
     //private int userId;
     //一个购物车有多个购物车条目
     @OneToMany(fetch = FetchType.LAZY,targetEntity = ShoppingCartItem.class,mappedBy = "shoppingCart")
-    private Set<ShoppingCartItem> shoppingCartItems=new HashSet<>();
+    private List<ShoppingCartItem> shoppingCartItems;
     @OneToOne(mappedBy = "shoppingCart")
     private User user;
 
@@ -25,11 +26,11 @@ public class ShoppingCart {
         return cartId;
     }
 
-    public Set<ShoppingCartItem> getShoppingCartItems() {
+    public List<ShoppingCartItem> getShoppingCartItems() {
         return shoppingCartItems;
     }
 
-    public void setShoppingCartItems(Set<ShoppingCartItem> shoppingCartItems) {
+    public void setShoppingCartItems(List<ShoppingCartItem> shoppingCartItems) {
         this.shoppingCartItems = shoppingCartItems;
     }
 

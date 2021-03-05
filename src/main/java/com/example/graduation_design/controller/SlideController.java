@@ -14,14 +14,14 @@ public class SlideController {
 
     @Resource
     private SlideService slideService;
-    @RequestMapping(value = "/addSlide")
+    @RequestMapping(value = "/business/addSlide")
     public ModelAndView addSlide(){
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.setViewName("/Background/addSlide.html");//转发到addSlide.html
         modelAndView.addObject("slideImg",slideService.findAllSlideImg());//封装数据，用于前端页面，这里返回的是list
         return modelAndView;
     }
-    @RequestMapping(value = "updateslide")
+    @RequestMapping(value = "/business/updateslide")
     public String updateSlide(@RequestParam("slideTheme")String slideTheme,@RequestParam("content")String content,
                               @RequestParam("url")String url,@RequestParam("updateIm") String updateIm,
                               @RequestParam("imgAddress") MultipartFile[] imgAddress){
@@ -31,6 +31,13 @@ public class SlideController {
         }else {
             return "/errorOrsuccess/BackgroundError.html";
         }
+    }
+    @RequestMapping(value = "/business/showAllSlide")
+    public ModelAndView showAllSlide(){
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.setViewName("/Background/showAllSlide.html");
+        modelAndView.addObject("slides",slideService.findAllSlide());
+        return modelAndView;
     }
     @RequestMapping(value = "rr404")
     public String error404(){

@@ -13,7 +13,7 @@ public class PictureDeal {
         //获取文件名
         String fileName = fileUpload.getOriginalFilename();
         //获取文件后缀名
-        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+       // String suffixName = fileName.substring(fileName.lastIndexOf("."));
         //重新生成文件名
         fileName = UUID.randomUUID()+fileName;
         //指定本地文件夹存储图片D:\JetBrains\file\graduation_design\src\main\resources\static\bookPicture
