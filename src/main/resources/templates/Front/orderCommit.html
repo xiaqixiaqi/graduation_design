@@ -1,0 +1,243 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<!--<meta http-equiv="Expires" CONTENT="0">-->
+	<!--<meta http-equiv="Cache-Control" CONTENT="no-cache">-->
+	<!--<meta http-equiv="Pragma" CONTENT="no-cache">-->
+	<!-- mobile meta tag -->		
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>XIAXIA book store</title>
+	
+	<!-- main style -->
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" media="screen" />
+
+	<!--miscellaneous-->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/superfish.css}" media="screen">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/prettyPhoto.css}" media="screen"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome.css}" media="screen"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/audioplayer.css}" media="screen" />
+	<!-- color scheme -->
+	<link rel="stylesheet" type="text/css" href="/color-schemes/red/red.css" media="screen" title="red" />
+	<!-- revolution slider settings -->
+	<link rel="stylesheet" type="text/css" th:href="@{/rs-plugin/css/settings.css}" media="screen" />
+
+	<!-- setting mobile environment -->		
+	<link rel="stylesheet" type="text/css" th:href="@{/ss/responsive.css}" media="screen" />
+	
+	<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome-ie7.min.css}">
+	<![endif]-->
+	
+	<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="/js/hoverIntent.js"></script>
+	<script type="text/javascript" src="/js/superfish.js"></script>
+	<script type="text/javascript" src="/js/jquery.jcarousel.js"></script>
+	<script type="text/javascript" src="/js/jquery.tweet.js"></script>
+	<script type="text/javascript" src="/js/jflickrfeed.js"></script>
+	<script type="text/javascript" src="/js/jquery.prettyPhoto.js"></script>
+	<script type="text/javascript" src="/js/slides.min.jquery.js"></script>
+	<script type="text/javascript" src="/js/jquery.mobilemenu.js"></script>
+	<script type="text/javascript" src="/js/jquery.contact.js"></script>
+	<script type="text/javascript" src="/js/jquery.preloadify.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.jplayer.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.isotope.min.js"></script>
+	
+	<!-- jQuery Revolution Slider -->
+	<script type="text/javascript" src="/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+	<script type="text/javascript" src="/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+	
+	<script type="text/javascript" src="/js/custom.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="/template-changer.css" media="screen"/>
+	<script type="text/javascript" src="/js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="/js/styleswitch.js"></script>
+	
+	<!-- Google Web Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+
+	<!--bootstrap-->
+	<link rel="stylesheet" href="/bootstrap-4.4.1-dist/css/bootstrap.min.css"/>
+	<script src="/bootstrap-4.4.1-dist/js/bootstrap.min.js"/>
+	<!--<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
+	<!--<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>-->
+	<!--<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+	<script type="text/javascript">
+		$(function()
+				{
+					// Call stylesheet init so that all stylesheet changing functions
+					// will work.
+					$.stylesheetInit();
+
+					// This code loops through the stylesheets when you click the link with
+					// an ID of "toggler" below.
+					$('#toggler').bind(
+							'click',
+							function(e)
+							{
+								$.stylesheetToggle();
+								return false;
+							}
+					);
+
+					// When one of the styleswitch links is clicked then switch the stylesheet to
+					// the one matching the value of that links rel attribute.
+					$('.styleswitch').bind(
+							'click',
+							function(e)
+							{
+								$.stylesheetSwitch(this.getAttribute('rel'));
+								return false;
+							}
+					);
+				}
+		);
+		onload=function() {
+			var e = document.getElementById("refreshed");
+			if (e.value == "no") e.value = "yes";
+			else {
+				e.value = "no";
+				location.reload();
+			}
+		}
+		$(function(){
+			if (window.name != 'bencalie') {
+				location.reload();
+				window.name = "bencalie";
+			} else {
+				window.name = "";
+			}
+
+		})
+	</script>
+</head>
+<body class="home">
+
+<input type="hidden" id="refreshed" value="no"/>
+<!-- setting a fullscreen image as background:
+<img id="bg" src="images/apple.jpg" alt="apple-background" />
+-->
+
+
+
+<div id="wrapper">
+	<header id="header">
+		<div class="centered-wrapper">
+			<div class="one-third">
+				<div class="logo">
+					<h2>XIAXIA book store</h2>
+				</div>
+			</div><!--end one-third-->
+			<div class="two-third column-last">
+				<nav id="navigation">
+					<ul id="mainnav">
+						<li><a th:href="@{/user/index}" ><span>首页</span></a></li>
+						<li><a th:href="@{/user/allBooks}"><span>图书</span></a></li>
+						<li><a th:href="@{/user/allBusiness}"><span>店铺</span></a></li>
+						<li><a th:href="@{/user/showShoppingCart}" class="current"><span>购物车</span></a></li>
+						<li><a th:href="@{/user/order?isPayment=0}"><span>我的订单</span></a></li>
+						<li><a th:href="@{/user/personalData}"><span>我的</span></a></li>
+						<li><a th:href="@{/user/addBusiness}"><span>加入我们</span></a></li>
+					</ul>
+				</nav><!--end navigation-->
+			</div><!--end two-third-->
+		<div class="clear"></div>			
+		</div><!--end centered-wrapper-->
+	</header>	
+
+	<hr/>
+	<div class="centered-wrapper">
+
+		<div class="one-fourth col-md-2">
+			<a th:href="@{/user/showShoppingCart}" class="list-group-item">购物车</a>
+			<a th:href="@{/user/order?isPayment=0}" class="list-group-item active">订单</a>
+			<a th:href="@{/user/addEvaluate}" class="list-group-item">评价</a>
+			<a th:href="@{/user/personalData}" class="list-group-item">个人信息</a>
+		</div><!--end one-fourth-->
+		<div class="three-fourth column-last">
+			<form action="/pay" method="POST">
+			<div>
+				<span>确认收获地址</span>
+				<hr/>
+				<div th:each="receiptsAddress:${allReceiptsAddresses}" >
+					<div th:if="${receiptsAddress.isDefault==1}"  style="background-color: #ffd4db;border-color: red">
+						<input type="radio" class="selectAddress" name="receiptsAddress"  th:value="${receiptsAddress.raId}" th:utext="${receiptsAddress.address+'  '+receiptsAddress.addressDetail+'  ('+receiptsAddress.consignee+' 收)'+' '+receiptsAddress.phone}" checked>
+						<input type="text" class="address" th:value="${receiptsAddress.address+' '+receiptsAddress.addressDetail}" hidden="hidden">
+						<input type="text" class="consignee" th:value="${receiptsAddress.consignee+' '+receiptsAddress.phone}" hidden="hidden">
+					</div>
+					<div th:if="${receiptsAddress.isDefault==0}">
+						<input type="radio" class="selectAddress" name="receiptsAddress" th:value="${receiptsAddress.raId}" value="option2" th:utext="${receiptsAddress.address+'  '+receiptsAddress.addressDetail+'  ('+receiptsAddress.consignee+' 收)'+' '+receiptsAddress.phone}">
+						<input type="text" class="address" th:value="${receiptsAddress.address+' '+receiptsAddress.addressDetail}" hidden="hidden">
+						<input type="text" class="consignee" th:value="${receiptsAddress.consignee+' '+receiptsAddress.phone}" hidden="hidden">
+					</div>
+				</div>
+				<!--<span th:utext="${receiptsAddress.address+receiptsAddress.addressDetail}"></span>-->
+				<a th:href="@{/user/addAddress}" class="button white">添加新地址</a>
+			</div>
+			<div>
+				<span>确认订单信息</span>
+				<table class="table" th:if="${selectShoppings!=null}">
+					<thead>
+					<tr>
+						<th></th>
+						<th>商品信息</th>
+						<th>单价</th>
+						<th>数量</th>
+						<th>小计</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="shoppingCartItem:${selectShoppings}" th:if="${shoppingCartItem.isValidation==1}">
+						<input type="checkbox" name="itemId" hidden="hidden" checked th:value="${shoppingCartItem.shoppingCartItemId}"/>
+						<td style="width: 10%"><img th:src="@{${shoppingCartItem.book.bookImages[0].pAddress}}" style="width: 100%"/></td>
+						<td th:utext="${shoppingCartItem.book.bookName}"></td>
+						<td th:utext="${shoppingCartItem.book.price}" class="price"></td>
+						<td th:utext="${shoppingCartItem.bookNumber}"></td>
+						<td th:utext="${shoppingCartItem.book.price*shoppingCartItem.bookNumber}"></td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<hr/>
+				备注：
+				<textarea class="form-control" name="message" rows="2"></textarea>
+                <input type="text" name="totalPrice" th:value="${totalPrice}" hidden="hidden"/>
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+					<h3 class="panel-title">再次确认</h3>
+				</div>
+				<div class="panel-body">
+					<p th:utext="${'实付款：'+totalPrice}"></p>
+					<p class="realAddress" th:utext="${'寄送到：'+allReceiptsAddresses[0].address+' '+allReceiptsAddresses[0].addressDetail}"></p>
+					<p class="realConsignee" th:utext="${'收货人：'+allReceiptsAddresses[0].consignee+' '+allReceiptsAddresses[0].phone}"></p>
+					<script>
+						$(".selectAddress").click(function () {
+							var address = $(this).siblings(".address").val();
+							var consignee = $(this).siblings(".consignee").val();
+							$(".realAddress").text('寄送到：'+address);
+							$(".realConsignee").text('收货人：'+consignee);
+						});
+					</script>
+				</div>
+				<button type="submit" class="button yellow">提交订单</button>
+			</div>
+		</form>
+		</div><!--three-fourth-->				
+		
+		<div class="clear"></div>
+	</div><!--end centered-wrapper-->
+	
+	<div class="space"></div>
+	
+	<footer id="footer">
+
+	</footer><!--end footer-->	
+	
+</div><!--end wrapper-->
+
+</body> 
+</html>

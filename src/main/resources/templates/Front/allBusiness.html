@@ -1,0 +1,172 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+	
+	<!-- mobile meta tag -->		
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>XIAXIA book store</title>
+	
+	<!-- main style -->
+	<link rel="stylesheet" type="text/css" href="/style.css" media="screen" />
+	
+
+	<!--miscellaneous-->
+	<link rel="stylesheet" type="text/css" href="/css/superfish.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="/css/prettyPhoto.css" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome.css" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="/css/audioplayer.css" media="screen" />
+	<!-- color scheme -->
+	<link rel="stylesheet" type="text/css" href="/color-schemes/red/red.css" media="screen" title="red" />
+	<!-- revolution slider settings -->
+	<link rel="stylesheet" type="text/css" href="/rs-plugin/css/settings.css" media="screen" />
+
+	<!-- setting mobile environment -->		
+	<link rel="stylesheet" type="text/css" href="/css/responsive.css" media="screen" />
+	
+	<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome-ie7.min.css">
+	<![endif]-->
+	
+	<!--[if lt IE 9]>
+	<script src="../../../html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="/js/hoverIntent.js"></script>
+	<script type="text/javascript" src="/js/superfish.js"></script>
+	<script type="text/javascript" src="/js/jquery.jcarousel.js"></script>
+	<script type="text/javascript" src="/js/jquery.tweet.js"></script>
+	<script type="text/javascript" src="/js/jflickrfeed.js"></script>
+	<script type="text/javascript" src="/js/jquery.prettyPhoto.js"></script>
+	<script type="text/javascript" src="/js/slides.min.jquery.js"></script>
+	<script type="text/javascript" src="/js/jquery.mobilemenu.js"></script>
+	<script type="text/javascript" src="/js/jquery.contact.js"></script>
+	<script type="text/javascript" src="/js/jquery.preloadify.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.jplayer.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.isotope.min.js"></script>
+	
+	<!-- jQuery Revolution Slider -->
+	<script type="text/javascript" src="/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+	<script type="text/javascript" src="/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+	
+	<script type="text/javascript" src="/js/custom.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="/template-changer.css" media="screen"/>
+	<script type="text/javascript" src="/js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="/js/styleswitch.js"></script>
+	
+	<!-- Google Web Fonts -->
+	<link href='../../../fonts.googleapis.com/css@family=Open+Sans_3A300,400,600,700' rel='stylesheet' type='text/css'>
+	<script type="text/javascript">
+		$(function()
+				{
+					// Call stylesheet init so that all stylesheet changing functions
+					// will work.
+					$.stylesheetInit();
+
+					// This code loops through the stylesheets when you click the link with
+					// an ID of "toggler" below.
+					$('#toggler').bind(
+							'click',
+							function(e)
+							{
+								$.stylesheetToggle();
+								return false;
+							}
+					);
+
+					// When one of the styleswitch links is clicked then switch the stylesheet to
+					// the one matching the value of that links rel attribute.
+					$('.styleswitch').bind(
+							'click',
+							function(e)
+							{
+								$.stylesheetSwitch(this.getAttribute('rel'));
+								return false;
+							}
+					);
+				}
+		);
+	</script>
+
+
+
+</head>
+<body class="home">
+<div id="wrapper">
+	<header id="header">
+		<div class="centered-wrapper">
+			<div class="one-third">
+				<div class="logo">
+					<hr><hr>
+					<h2>XIAXIA book store</h2>
+					<hr><hr>
+				</div>
+			</div><!--end one-third-->
+
+			<div class="two-third column-last">
+				<nav id="navigation">
+					<ul id="mainnav">
+						<li><a th:href="@{/user/index}"><span>首页</span></a></li>
+						<li><a th:href="@{/user/allBooks}"><span>图书</span></a></li>
+						<li><a th:href="@{/user/allBusiness}" class="current"><span>店铺</span></a></li>
+						<li><a th:href="@{/user/showShoppingCart}"><span>购物车</span></a></li>
+						<li><a th:href="@{/user/order?isPayment=0}"><span>我的订单</span></a></li>
+						<li><a th:href="@{/user/personalData}"><span>我的</span></a></li>
+						<li><a th:href="@{/user/addBusiness}"><span>加入我们</span></a></li>
+					</ul>
+				</nav><!--end navigation-->
+			</div><!--end two-third-->
+		<div class="clear"></div>			
+		</div><!--end centered-wrapper-->
+	</header>	
+			
+	<div class="top-shadow"></div>
+	
+	<section class="page-title">
+	<div class="page-background">
+		<div class="pattern1"></div>
+	</div>
+	<div class="bottom-shadow"></div>
+		<div class="title-wrapper">
+			<div class="title-bg">
+				<div class="title-content">
+					<div class="one-third">
+						<h2>所有店铺</h2>
+
+					</div>
+					<div class="clear"></div>
+				</div><!--end title-content-->
+			</div>
+		</div><!--end title-wrapper-->
+	</section>	
+
+	<div class="centered-wrapper">			
+		<section id="portfolio-wrapper">
+			<ul class="portfolio three-columns" th:if="${allBusiness!=null}">
+				<li th:data-category="${business.storeName}" th:each="business:${allBusiness}">
+					<a th:href="@{${business.logo}}" rel="prettyPhoto[pp_gal]">
+						<span class="item-on-hover"><span class="hover-image"></span></span>
+						<center><img th:src="@{${business.logo}}" style="height: 75%;width: 75%;" alt=" " /></center>
+					</a>
+					<div class="portfolio-carousel-details">
+						<h3><a th:href="@{'/user/showBusinessDetail?bId='+${business.bId}}" th:utext="${business.storeName}"></a></h3>
+						<!--<span th:utext="${book.price}"></span>-->
+					</div>
+				</li>
+			</ul>	
+		</section>	
+		
+		<div class="clear"></div>
+	</div><!--end centered-wrapper-->
+	
+	<div class="space"></div>
+	
+	<footer id="footer">
+
+	</footer><!--end footer-->	
+	
+</div><!--end wrapper-->
+</body> 
+</html>

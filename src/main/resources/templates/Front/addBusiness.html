@@ -1,0 +1,322 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	
+	<!-- mobile meta tag -->		
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>XIAXIA book store</title>
+	
+	<!-- main style -->
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" media="screen" />
+
+	
+	<!--miscellaneous-->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/superfish.css}" media="screen">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/prettyPhoto.css}" media="screen"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome.css}" media="screen"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/audioplayer.css}" media="screen" />
+	<!-- color scheme -->
+	<link rel="stylesheet" type="text/css" href="/color-schemes/red/red.css" media="screen" title="red" />
+	<!-- revolution slider settings -->
+	<link rel="stylesheet" type="text/css" th:href="@{/rs-plugin/css/settings.css}" media="screen" />
+
+	<!-- setting mobile environment -->		
+	<link rel="stylesheet" type="text/css" th:href="@{/css/responsive.css}" media="screen" />
+	
+	<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome-ie7.min.css}">
+	<![endif]-->
+	
+	<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="/js/hoverIntent.js"></script>
+	<script type="text/javascript" src="/js/superfish.js"></script>
+	<script type="text/javascript" src="/js/jquery.jcarousel.js"></script>
+	<script type="text/javascript" src="/js/jquery.tweet.js"></script>
+	<script type="text/javascript" src="/js/jflickrfeed.js"></script>
+	<script type="text/javascript" src="/js/jquery.prettyPhoto.js"></script>
+	<script type="text/javascript" src="/js/slides.min.jquery.js"></script>
+	<script type="text/javascript" src="/js/jquery.mobilemenu.js"></script>
+	<script type="text/javascript" src="/js/jquery.contact.js"></script>
+	<script type="text/javascript" src="/js/jquery.preloadify.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.jplayer.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.isotope.min.js"></script>
+	
+	<!-- jQuery Revolution Slider -->
+	<script type="text/javascript" src="/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+	<script type="text/javascript" src="/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+	
+	<script type="text/javascript" src="/js/custom.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="/template-changer.css" media="screen"/>
+	<script type="text/javascript" src="/js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="/js/styleswitch.js"></script>
+
+
+	<!--可无视-->
+	<link href="/aa/css/main.css" rel="stylesheet" type="text/css" />
+
+	<!--必要样式-->
+	<link href="/address/css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="/address/css/city-picker.css" rel="stylesheet" type="text/css" />
+	<script src="/address/js/jquery.js"></script>
+	<script src="/address/js/bootstrap.js"></script>
+	<script src="/address/js/city-picker.data.js"></script>
+	<script src="/address/js/city-picker.js"></script>
+	<script src="/address/js/main.js"></script>
+	<!--增加validate插件-->
+	<script th:src="@{/assets/js/jquery-validate/jquery.validate.min.js}"></script>
+	<!--上传照片的按钮-->
+	<style>
+		body {
+			background: #edf0f2;
+		}
+		/*img {*/
+		/*width: 100%;*/
+		/*display: block;*/
+		/*border: none;*/
+		/*vertical-align: bottom;*/
+		/*border: none;*/
+		/*}*/
+		input[type="button"] {
+			-webkit-appearance: none;
+		}
+		.productDrawingBox {
+			background-color: #fcfcfc;
+			color: #333333;
+			font-size: 16px;
+			padding-left: 11px;
+			border-bottom: solid 1px #e5e5e5;
+		}
+		.productDescription {
+			height: 44px;
+			line-height: 44px;
+		}
+		.productImg {
+			height: 96px;
+			overflow: hidden;
+		}
+		.imgBiMG{
+			width: 78px;
+			height: 81px;
+			float: left;
+			display: block;
+		}
+		.uploadDIv {
+			width: 78px;
+			height: 81px;
+			background-color: #edf0f2;
+			font-size: 28px;
+			color: #bfbfbf;
+			text-align: center;
+			line-height: 81px;
+			float: left;
+			position: relative;
+		}
+		.uploadDIv input {
+			width: 78px;
+			height: 78px;
+			opacity: 0;
+			position: absolute;
+			right: 0px;
+			top: 0px;
+			z-index: 4;
+			padding: 0;
+		}
+
+		.list-group-horizontal .list-group-item {
+			display: inline-block;
+			float: left;
+		}
+
+
+
+	</style>
+	<script type="text/javascript">
+	$(document).ready(
+			function() {
+				var i=0;//用于关联照片和file
+				//为外面的盒子绑定一个点击事件
+				$(".uploadDIv").click(function () {
+					/*
+                    1、先获取input标签
+                    2、给input标签绑定change事件
+                    3、把图片回显
+                     */
+//            1、先回去input标签
+					var $input = $("#inputs");
+
+//            2、给input标签绑定change事件
+					$input.on("change", function () {
+						console.log(this);
+						//补充说明：因为我们给input标签设置multiple属性，因此一次可以上传多个文件
+						//获取选择图片的个数
+						var files = this.files;
+						var length = files.length;
+						console.log("选择了" + length + "张图片");
+						//3、回显
+						$.each(files, function (key, value) {
+							//每次都只会遍历一个图片数据
+							var div = document.createElement("div"),
+									img = document.createElement("img");
+							div.className = "divImg";
+							div.setAttribute("id","divImg")
+							img.className = "imgBiMG";
+							++i;
+							img.setAttribute('id',"label"+i);
+
+							var fr = new FileReader();
+							fr.onload = function () {
+								//this.result
+								img.src = this.result;
+								div.appendChild(img);
+								// document.body.appendChild(div);
+								$("#divImg1").after(div);//在标签divImgl后加入
+							};
+							fr.readAsDataURL(value);
+						})
+
+					});
+
+					//4、我们把当前input标签的id属性remove
+					$input.removeAttr("id");
+					document.getElementById("label").setAttribute("id","label"+(i+1));
+					//我们做个标记，再class中再添加一个类名就叫test
+					var newInput = '<div id="label"> <input type="file" name="logo"  id="inputs" accept="image/*" class=\'fileTest\' multiple="multiple" /></div>';
+					$(this).append($(newInput));
+
+				});
+
+				/*删除功能*/
+				$(document).on("click", ".imgBiMG", function () {
+					console.log("click");
+					var _this = $(this);
+					var a=_this.attr("id");//获取属性值
+					console.log(a);
+					_this.parents("#divImg").remove();
+					console.log(a);
+					document.getElementById(a).remove();
+				})
+			});
+
+</script>
+</head>
+<body class="home">
+
+
+<div id="wrapper">
+	<header id="header">
+		<div class="centered-wrapper">
+			<div class="one-third">
+				<div class="logo">
+					<h2>XIAXIA book store</h2>
+				</div>
+			</div><!--end one-third-->
+			<div class="two-third column-last">
+				<nav id="navigation">
+					<ul id="mainnav">
+						<li><a th:href="@{/user/index}"><span>首页</span></a></li>
+						<li><a th:href="@{/user/allBooks}"><span>图书</span></a></li>
+						<li><a th:href="@{/user/allBusiness}"><span>店铺</span></a></li>
+						<li><a th:href="@{/user/showShoppingCart}"><span>购物车</span></a></li>
+						<li><a th:href="@{/user/order?isPayment=0}" class="current"><span>我的订单</span></a></li>
+						<li><a th:href="@{/user/personalData}"><span>我的</span></a></li>
+						<li><a th:href="@{/user/addBusiness}"><span>加入我们</span></a></li>
+					</ul>
+				</nav><!--end navigation-->
+			</div><!--end two-third-->
+		<div class="clear"></div>			
+		</div><!--end centered-wrapper-->
+	</header>	
+
+	<hr/>
+	<div class="centered-wrapper">	
+
+			<div class="container">
+
+				<h4 class="page-header">Hi<span th:utext="${user.account}"></span>,欢迎来免费开店！</h4>
+
+				<div class="docs-methods">
+					<form class="form-horizontal" role="form" method="POST" action="/user/addBusinessing"    enctype="multipart/form-data">
+						<div class="form-group">
+							<label for="storeName" class="col-sm-2 control-label">店铺名称</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="storeName" name="storeName" placeholder="取个店铺名称吧o(*￣▽￣*)ブ"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="account" class="col-sm-2 control-label">掌柜名</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="account" name="storeName" th:placeholder="${user.account}" disabled="disabled"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="phone" class="col-sm-2 control-label">手机号</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="phone" name="phone" th:placeholder="${user.phone}" disabled="disabled"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">地址信息</label>
+							<div id="distpicker" class="col-sm-4">
+								<div class="form-group">
+									<div style="position: relative;">
+										<input id="city-picker3" name="address" class="form-control" readonly type="text" data-toggle="city-picker">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="detailAddress" class="col-sm-2 control-label">详细地址</label>
+							<div class="col-sm-4">
+								<textarea  id="detailAddress" name="addressDetail" class="form-control" rows="3" placeholder="请输入详细的地址信息，如道路，门牌号，小区，楼栋号，单位等信息"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="introduction" class="col-sm-2 control-label">店铺的介绍</label>
+							<div class="col-sm-4">
+								<textarea  id="introduction" name="introduction" class="form-control" rows="3" placeholder="介绍下你的店铺吧"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">上传店铺logo</label>
+							<div class="col-sm-10">
+								<div class="productImg">
+									<!--<div id="uploadBox">-->
+
+									<div class="uploadDIv">
+										<span>+</span><div id="label"><input type="file" name="logo"  id="inputs" accept="image/*" class='fileTest' multiple="multiple" /></div>
+									</div>
+									<div class="divImg" id="divImg1"></div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="button red">加入</button>
+							</div>
+						</div>
+
+					</form>
+				</div>
+
+			</div>
+
+		
+		<div class="clear"></div>
+	</div><!--end centered-wrapper-->
+	
+	<div class="space"></div>
+	
+	<footer id="footer">
+
+	</footer><!--end footer-->	
+	
+</div><!--end wrapper-->
+
+</body> 
+</html>

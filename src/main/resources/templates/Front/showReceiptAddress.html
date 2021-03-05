@@ -1,0 +1,183 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	
+	<!-- mobile meta tag -->		
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>XIAXIA book store</title>
+	
+	<!-- main style -->
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" media="screen" />
+	
+
+	<!--miscellaneous-->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/superfish.css}" media="screen">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/prettyPhoto.css}" media="screen"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome.css}" media="screen"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/audioplayer.css}" media="screen" />
+	<!-- color scheme -->
+	<link rel="stylesheet" type="text/css" href="/color-schemes/red/red.css" media="screen" title="red" />
+	<!-- revolution slider settings -->
+	<link rel="stylesheet" type="text/css" th:href="@{/rs-plugin/css/settings.css}" media="screen" />
+
+	<!-- setting mobile environment -->		
+	<link rel="stylesheet" type="text/css" th:href="@{/css/responsive.css}" media="screen" />
+	
+	<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome-ie7.min.css}">
+	<![endif]-->
+	
+	<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="/js/hoverIntent.js"></script>
+	<script type="text/javascript" src="/js/superfish.js"></script>
+	<script type="text/javascript" src="/js/jquery.jcarousel.js"></script>
+	<script type="text/javascript" src="/js/jquery.tweet.js"></script>
+	<script type="text/javascript" src="/js/jflickrfeed.js"></script>
+	<script type="text/javascript" src="/js/jquery.prettyPhoto.js"></script>
+	<script type="text/javascript" src="/js/slides.min.jquery.js"></script>
+	<script type="text/javascript" src="/js/jquery.mobilemenu.js"></script>
+	<script type="text/javascript" src="/js/jquery.contact.js"></script>
+	<script type="text/javascript" src="/js/jquery.preloadify.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.jplayer.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.isotope.min.js"></script>
+	
+	<!-- jQuery Revolution Slider -->
+	<script type="text/javascript" src="/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+	<script type="text/javascript" src="/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+	
+	<script type="text/javascript" src="/js/custom.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="/template-changer.css" media="screen"/>
+	<script type="text/javascript" src="/js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="/js/styleswitch.js"></script>
+	
+	<!-- Google Web Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+
+	<!--bootstrap-->
+	<link rel="stylesheet" href="/bootstrap-4.4.1-dist/css/bootstrap.min.css"/>
+	<script src="/bootstrap-4.4.1-dist/js/bootstrap.min.js"/>
+	<script type="text/javascript">
+		$(function()
+				{
+					// Call stylesheet init so that all stylesheet changing functions
+					// will work.
+					$.stylesheetInit();
+
+					// This code loops through the stylesheets when you click the link with
+					// an ID of "toggler" below.
+					$('#toggler').bind(
+							'click',
+							function(e)
+							{
+								$.stylesheetToggle();
+								return false;
+							}
+					);
+
+					// When one of the styleswitch links is clicked then switch the stylesheet to
+					// the one matching the value of that links rel attribute.
+					$('.styleswitch').bind(
+							'click',
+							function(e)
+							{
+								$.stylesheetSwitch(this.getAttribute('rel'));
+								return false;
+							}
+					);
+				}
+		);
+	</script>
+
+</head>
+<body class="home">
+<div id="wrapper">
+	<header id="header">
+		<div class="centered-wrapper">
+			<div class="one-third">
+				<div class="logo">
+					<h2>XIAXIA book store</h2>
+				</div>
+			</div><!--end one-third-->
+			<div class="two-third column-last">
+				<nav id="navigation">
+					<ul id="mainnav">
+						<li><a th:href="@{/user/index}" ><span>首页</span></a></li>
+						<li><a th:href="@{/user/allBooks}"><span>图书</span></a></li>
+						<li><a th:href="@{/user/allBusiness}"><span>店铺</span></a></li>
+						<li><a th:href="@{/user/showShoppingCart}"><span>购物车</span></a></li>
+						<li><a th:href="@{/user/order?isPayment=0}"><span>我的订单</span></a></li>
+						<li><a th:href="@{/user/personalData}" class="current"><span>我的</span></a></li>
+						<li><a th:href="@{/user/addBusiness}"><span>加入我们</span></a></li>
+					</ul>
+				</nav><!--end navigation-->
+			</div><!--end two-third-->
+		<div class="clear"></div>			
+		</div><!--end centered-wrapper-->
+	</header>	
+
+	<hr/>
+	<div class="centered-wrapper">
+
+		<div class="one-fourth col-md-2">
+			<a th:href="@{/user/showShoppingCart}" class="list-group-item">购物车</a>
+			<a th:href="@{/user/order?isPayment=0}" class="list-group-item">订单</a>
+			<a th:href="@{/user/addEvaluate}" class="list-group-item">评价</a>
+			<a th:href="@{/user/personalData}" class="list-group-item active">个人信息</a>
+			<a href="#" class="list-group-item">建议</a>
+		</div><!--end one-fourth-->
+		<div>
+			<section >
+				<ul id="filters" class="option-set" >
+					<li><a th:href="@{/user/personalData}">个人资料</a></li>
+					<li><a th:href="@{/user/updateUserPassword?tip=}">修改登录密码</a></li>
+					<li><a th:href="@{/user/showAllReceiptAddress}" class="selected active">收货地址</a></li>
+				</ul>
+			</section>
+		</div>
+		<div class="three-fourth column-last">
+			<a th:href="@{/user/addAddress}" class="button white">添加新地址</a>
+			<div class="box-info" th:utext="${'已保存'+#lists.size(allAddress)+'了条地址'}"></div>
+			<table class="table table-bordered" th:if="${allAddress!=null}">
+				<!--<caption>边框表格布局</caption>-->
+				<thead>
+				<tr>
+					<th>收货人</th>
+					<th>所在地区</th>
+					<th>详细地址</th>
+					<th>邮编</th>
+					<th>电话/手机</th>
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:each="address:${allAddress}">
+					<td th:utext="${address.consignee}"></td>
+					<td th:utext="${address.address}"></td>
+					<td th:utext="${address.addressDetail}"></td>
+					<td th:utext="${address.zipCode}"></td>
+					<td th:utext="${address.phone}"></td>
+					<td><a th:href="@{'/user/updateReceiptAddress?raId='+${address.raId}}"> 修改</a>|<a th:href="@{'/user/deleteReceiptAddress?raId='+${address.raId}}"> 删除</a></td>
+				</tr>
+				</tbody>
+			</table>
+		</div><!--three-fourth-->				
+		
+		<div class="clear"></div>
+	</div><!--end centered-wrapper-->
+	
+	<div class="space"></div>
+	
+	<footer id="footer">
+
+	</footer><!--end footer-->	
+	
+</div><!--end wrapper-->
+
+</body> 
+</html>
